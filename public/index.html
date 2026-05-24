@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Campus Compass</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="home-screen" id="home" aria-labelledby="homeTitle">
+      <header class="home-nav" aria-label="Authentication options">
+        <a class="brand brand-on-home" href="#home" aria-label="Campus Compass home">
+          <span class="brand-mark" aria-hidden="true">CC</span>
+          <span>
+            <strong>Campus Compass</strong>
+            <small>University student portal</small>
+          </span>
+        </a>
+
+        <div class="auth-actions" aria-label="Dummy account actions">
+          <button class="text-button" type="button" data-auth-action="login">Log In</button>
+          <button class="text-button" type="button" data-auth-action="signin">Sign In</button>
+          <button class="primary-button compact" type="button" data-auth-action="signup">Sign Up</button>
+        </div>
+      </header>
+
+      <div class="home-layout">
+        <div class="home-copy">
+          <p class="eyebrow">Academic services desk</p>
+          <h1 id="homeTitle">One calm place for campus planning.</h1>
+          <p class="intro">
+            Access elective reviews, CGPA planning, placement resources, and event tracking from a university-friendly dashboard.
+          </p>
+
+          <div class="home-actions">
+            <button class="primary-button" type="button" data-auth-action="signup">Create Dummy Account</button>
+            <button class="ghost-button" type="button" data-auth-action="login">Student Log In</button>
+            <button class="skip-link" type="button" id="enterPortal">Skip to main page</button>
+          </div>
+        </div>
+
+        <aside class="auth-cover" aria-label="Dummy sign in panel">
+          <div class="auth-card">
+            <div>
+              <p class="eyebrow">Dummy access</p>
+              <h2 id="authTitle">Sign in to preview</h2>
+              <p id="authHint">This cover is only a placeholder. Use the bypass button to enter the main page.</p>
+            </div>
+
+            <form class="auth-form" aria-label="Dummy authentication form">
+              <label>
+                University email
+                <input type="email" placeholder="student@university.edu" autocomplete="email" />
+              </label>
+              <label>
+                Password
+                <input type="password" placeholder="Not required yet" autocomplete="current-password" />
+              </label>
+              <button class="primary-button full" type="button" id="dummySubmit">Continue preview</button>
+            </form>
+          </div>
+
+          <div class="campus-notes" aria-label="Portal highlights">
+            <div>
+              <strong id="homeReviewTotal">11</strong>
+              <span>Elective reviews</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>Student tools</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>Verification steps for now</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="app-shell is-hidden" id="portal" aria-hidden="true">
+      <header class="topbar">
+        <a class="brand" href="./index.html?view=portal" aria-label="Campus Compass main page">
+          <span class="brand-mark" aria-hidden="true">CC</span>
+          <span>
+            <strong>Campus Compass</strong>
+            <small>Main page</small>
+          </span>
+        </a>
+      </header>
+
+      <main>
+        <section class="main-menu" id="toolHome" aria-labelledby="mainMenuTitle">
+          <div class="main-menu-copy">
+            <p class="eyebrow">Main page</p>
+            <h1 id="mainMenuTitle">Select a campus tool</h1>
+          </div>
+
+          <section class="tool-grid" aria-label="Student portal options">
+            <a class="tool-card" href="./electives.html">
+              <span class="tool-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M5 4.5h9a3 3 0 0 1 3 3v12H8a3 3 0 0 0-3 3v-18Z" />
+                  <path d="M17 7.5h2a2 2 0 0 1 2 2v10H8" />
+                  <path d="M8 8h5M8 12h6" />
+                </svg>
+              </span>
+              <span>
+                <strong>Elective Reviews</strong>
+                <small>Course ratings, workload notes, faculty feedback</small>
+              </span>
+            </a>
+
+            <a class="tool-card" href="./cgpa.html">
+              <span class="tool-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M4 5h16v14H4z" />
+                  <path d="M8 9h.01M12 9h.01M16 9h.01M8 13h.01M12 13h.01M16 13h.01M8 17h8" />
+                </svg>
+              </span>
+              <span>
+                <strong>CGPA Calculator</strong>
+                <small>Semester credits, SGPA inputs, projected CGPA</small>
+              </span>
+            </a>
+
+            <a class="tool-card" href="./placements.html">
+              <span class="tool-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M10 6h4a2 2 0 0 1 2 2v1H8V8a2 2 0 0 1 2-2Z" />
+                  <path d="M4 9h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9Z" />
+                  <path d="M9 14h6" />
+                </svg>
+              </span>
+              <span>
+                <strong>Placement Resources</strong>
+                <small>Company prep, aptitude sets, interview archives</small>
+              </span>
+            </a>
+
+            <a class="tool-card" href="./events.html">
+              <span class="tool-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M7 3v3M17 3v3M4 8h16" />
+                  <path d="M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+                  <path d="M8 12h3M8 16h6" />
+                </svg>
+              </span>
+              <span>
+                <strong>Event Tracker</strong>
+                <small>Academic dates, clubs, deadlines, reminders</small>
+              </span>
+            </a>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

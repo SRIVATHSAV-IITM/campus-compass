@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Event Tracker | Campus Compass</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell tool-page">
+      <header class="topbar">
+        <a class="brand" href="./index.html?view=portal" aria-label="Campus Compass main page">
+          <span class="brand-mark" aria-hidden="true">CC</span>
+          <span>
+            <strong>Campus Compass</strong>
+            <small>Event Tracker</small>
+          </span>
+        </a>
+
+        <nav class="topnav" aria-label="Tool navigation">
+          <a href="./index.html?view=portal">Main Page</a>
+          <a href="./electives.html">Electives</a>
+          <a href="./cgpa.html">CGPA</a>
+          <a href="./placements.html">Placements</a>
+          <a class="is-current" href="./events.html">Events</a>
+        </nav>
+      </header>
+
+      <main class="tool-page-main">
+        <article class="feature-panel is-visible">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Event tracker</p>
+              <h1>Track academic deadlines, campus events, and club activities.</h1>
+            </div>
+            <button class="ghost-button" type="button">Add Event</button>
+          </div>
+
+          <div class="event-grid">
+            <article class="event-card">
+              <span>Academic</span>
+              <strong>Course registration window</strong>
+              <p>Placeholder item for registration, add/drop, exam, and fee deadline tracking.</p>
+            </article>
+            <article class="event-card">
+              <span>Career</span>
+              <strong>Placement preparation sprint</strong>
+              <p>Dummy schedule block for resume reviews, mock interviews, and test practice.</p>
+            </article>
+            <article class="event-card">
+              <span>Campus Life</span>
+              <strong>Club meetups and seminars</strong>
+              <p>Use this space for department talks, workshops, fests, and society events.</p>
+            </article>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

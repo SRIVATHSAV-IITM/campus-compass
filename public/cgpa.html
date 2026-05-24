@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CGPA Calculator | Campus Compass</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell tool-page">
+      <header class="topbar">
+        <a class="brand" href="./index.html?view=portal" aria-label="Campus Compass main page">
+          <span class="brand-mark" aria-hidden="true">CC</span>
+          <span>
+            <strong>Campus Compass</strong>
+            <small>CGPA Calculator</small>
+          </span>
+        </a>
+
+        <nav class="topnav" aria-label="Tool navigation">
+          <a href="./index.html?view=portal">Main Page</a>
+          <a href="./electives.html">Electives</a>
+          <a class="is-current" href="./cgpa.html">CGPA</a>
+          <a href="./placements.html">Placements</a>
+          <a href="./events.html">Events</a>
+        </nav>
+      </header>
+
+      <main class="tool-page-main">
+        <article class="feature-panel is-visible">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">CGPA calculator</p>
+              <h1>Calculate semester GPA and projected CGPA from course credits and grades.</h1>
+            </div>
+            <div class="cgpa-score" aria-live="polite">
+              <span>CGPA</span>
+              <strong id="cgpaValue">0.00</strong>
+            </div>
+          </div>
+
+          <div class="cgpa-workspace">
+            <div class="calculator-grid">
+              <label>
+                Current CGPA
+                <input id="currentCgpaInput" type="number" min="0" max="10" step="0.01" placeholder="8.20" />
+              </label>
+              <label>
+                Completed credits
+                <input id="earnedCreditsInput" type="number" min="0" step="1" placeholder="96" />
+              </label>
+              <label>
+                Grade scale
+                <select id="gradeScaleInput">
+                  <option value="campus10">Campus 10-point scale</option>
+                  <option value="fourPoint">4.0 scale from package</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="course-calculator" aria-label="Course grade calculator">
+              <div class="course-table-head">
+                <span>Course</span>
+                <span>Credits</span>
+                <span>Grade</span>
+                <span>Action</span>
+              </div>
+              <div class="course-rows" id="courseRows"></div>
+            </div>
+
+            <div class="calculator-actions">
+              <button class="ghost-button" id="addCourseRow" type="button">Add Course</button>
+              <button class="ghost-button secondary" id="resetCgpa" type="button">Reset</button>
+            </div>
+
+            <div class="result-grid" aria-live="polite">
+              <div>
+                <span>Semester GPA</span>
+                <strong id="semesterGpaValue">0.00</strong>
+              </div>
+              <div>
+                <span>Semester credits</span>
+                <strong id="semesterCreditsValue">0</strong>
+              </div>
+              <div>
+                <span>Projected CGPA</span>
+                <strong id="projectedCgpaValue">0.00</strong>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

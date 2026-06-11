@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Placement Resources | Campus Compass</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <div class="app-shell tool-page">
@@ -22,6 +23,7 @@
           <a href="./electives.html">Electives</a>
           <a href="./cgpa.html">CGPA</a>
           <a class="is-current" href="./placements.html">Placements</a>
+          <a href="./departments.html">Department Resources</a>
           <a href="./events.html">Events</a>
         </nav>
       </header>
@@ -33,30 +35,72 @@
               <p class="eyebrow">Placement resources</p>
               <h1>Organize company prep material by role, round, and timeline.</h1>
             </div>
-            <button class="ghost-button" type="button">Upload Resource</button>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 14px;">
+              <div class="segment-control">
+                <button class="segment-btn active" id="tabNonCore" type="button">Non Core</button>
+                <button class="segment-btn" id="tabCore" type="button">Core</button>
+              </div>
+              <button class="ghost-button" id="uploadResourceBtn" type="button">Upload Resource</button>
+            </div>
           </div>
-
-          <div class="resource-grid">
-            <article class="resource-card">
+          <div class="resource-grid" id="resourceGrid">
+            <article class="resource-card" style="cursor: pointer;" onclick="window.open('https://drive.google.com/drive/folders/1T3WlU64DYRW13qbvgzTrbd6Xz8FZfF5-', '_blank')">
               <span>Aptitude</span>
               <strong>Quant, verbal, reasoning sets</strong>
-              <p>Topic-wise practice bundles with timed mock links.</p>
+              <a href="https://drive.google.com/drive/folders/1T3WlU64DYRW13qbvgzTrbd6Xz8FZfF5-" target="_blank" rel="noopener noreferrer" class="resource-link-btn" onclick="event.stopPropagation();"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; display: inline-block; vertical-align: text-bottom;"><path d="M22 19H2L12 2l10 17z"/></svg>Open Drive Folder</a>
             </article>
-            <article class="resource-card">
+            <article class="resource-card" style="cursor: pointer;" onclick="window.open('https://drive.google.com/drive/folders/1VkZgUjpast_Dwf9RfDdSpCB8FMUcFS0', '_blank')">
               <span>Coding</span>
               <strong>DSA sheets and contest archives</strong>
-              <p>Campus-specific patterns from previous recruitment rounds.</p>
+              <a href="https://drive.google.com/drive/folders/1VkZgUjpast_Dwf9RfDdSpCB8FMUcFS0" target="_blank" rel="noopener noreferrer" class="resource-link-btn" onclick="event.stopPropagation();"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; display: inline-block; vertical-align: text-bottom;"><path d="M22 19H2L12 2l10 17z"/></svg>Open Drive Folder</a>
             </article>
-            <article class="resource-card">
+            <article class="resource-card" style="cursor: pointer;" onclick="window.open('https://drive.google.com/drive/folders/1V74mSXduymwyhij3Tw1m18KYM3jURNoQ', '_blank')">
               <span>Interviews</span>
               <strong>HR and technical experiences</strong>
-              <p>Verified student notes from internships and full-time offers.</p>
+              <a href="https://drive.google.com/drive/folders/1V74mSXduymwyhij3Tw1m18KYM3jURNoQ" target="_blank" rel="noopener noreferrer" class="resource-link-btn" onclick="event.stopPropagation();"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; display: inline-block; vertical-align: text-bottom;"><path d="M22 19H2L12 2l10 17z"/></svg>Open Drive Folder</a>
             </article>
           </div>
         </article>
       </main>
     </div>
 
-    <script src="./app.js"></script>
+    <!-- Upload Resource Modal -->
+    <div class="modal-overlay" id="resourceModal">
+      <div class="modal-container">
+        <header class="modal-header">
+          <h2>Upload Placement Resource</h2>
+          <button class="modal-close" type="button" aria-label="Close modal">×</button>
+        </header>
+        <main class="modal-body">
+          <form id="resourceForm">
+            <label>
+              Resource Category
+              <select id="modalResourceCategory" required>
+                <option value="Non Core">Non Core</option>
+                <option value="Core">Core</option>
+              </select>
+            </label>
+            <label>
+              Resource Title
+              <input type="text" id="modalResourceTitle" placeholder="e.g. SDE Interview Practice" required />
+            </label>
+            <label>
+              Short Description / Link
+              <textarea id="modalResourceDesc" rows="3" placeholder="Add preparation notes or URL..." required style="width: 100%; border-radius: 8px; background: rgba(8, 9, 8, 0.72); border: 1px solid rgba(244, 240, 232, 0.13); color: var(--ink); padding: 10px; font-family: inherit; resize: vertical;"></textarea>
+            </label>
+            <label>
+              Upload File (Optional)
+              <input type="file" id="modalResourceFile" accept=".pdf,.doc,.docx,.png,.jpg" class="file-input" style="padding: 8px; background: rgba(8, 9, 8, 0.72); border: 1px solid rgba(244, 240, 232, 0.13); border-radius: 8px; color: var(--body); cursor: pointer;" />
+            </label>
+          </form>
+        </main>
+        <footer class="modal-footer">
+          <button class="ghost-button secondary modal-cancel" type="button">Cancel</button>
+          <button class="primary-button" form="resourceForm" type="submit">Upload Resource</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="./app-v2.js"></script>
   </body>
 </html>

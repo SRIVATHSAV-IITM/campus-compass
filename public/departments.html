@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Department Resources | Campus Compass</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <div class="app-shell tool-page">
+      <header class="topbar">
+        <a class="brand" href="./index.html?view=portal" aria-label="Campus Compass main page">
+          <span class="brand-mark" aria-hidden="true">CC</span>
+          <span>
+            <strong>Campus Compass</strong>
+            <small>Department Resources</small>
+          </span>
+        </a>
+
+        <nav class="topnav" aria-label="Tool navigation">
+          <a href="./index.html?view=portal">Main Page</a>
+          <a href="./electives.html">Electives</a>
+          <a href="./cgpa.html">CGPA</a>
+          <a href="./placements.html">Placements</a>
+          <a class="is-current" href="./departments.html">Department Resources</a>
+          <a href="./events.html">Events</a>
+        </nav>
+      </header>
+
+      <main class="tool-page-main">
+        <article class="feature-panel is-visible">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Academic Semesters</p>
+              <h1>Curated study materials, slides, and files sorted by department.</h1>
+            </div>
+          </div>
+
+          <div class="resource-grid" id="departmentGrid" style="display: block; padding: 48px 24px;">
+            <div class="empty-tab-state" style="margin: 0 auto; max-width: 600px; padding: 36px 24px;">
+              <h3>Department Resources Coming Soon!</h3>
+              <p>Core semester course notes, slides, and study guides will be added here by branch shortly.</p>
+            </div>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <script src="./app-v2.js"></script>
+  </body>
+</html>

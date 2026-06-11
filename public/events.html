@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Event Tracker | Campus Compass</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <div class="app-shell tool-page">
@@ -22,6 +23,7 @@
           <a href="./electives.html">Electives</a>
           <a href="./cgpa.html">CGPA</a>
           <a href="./placements.html">Placements</a>
+          <a href="./departments.html">Department Resources</a>
           <a class="is-current" href="./events.html">Events</a>
         </nav>
       </header>
@@ -33,10 +35,10 @@
               <p class="eyebrow">Event tracker</p>
               <h1>Track academic deadlines, campus events, and club activities.</h1>
             </div>
-            <button class="ghost-button" type="button">Add Event</button>
+            <button class="ghost-button" id="addEventBtn" type="button">Add Event</button>
           </div>
 
-          <div class="event-grid">
+          <div class="event-grid" id="eventGrid">
             <article class="event-card">
               <span>Academic</span>
               <strong>Course registration window</strong>
@@ -57,6 +59,44 @@
       </main>
     </div>
 
-    <script src="./app.js"></script>
+    <!-- Add Event Modal -->
+    <div class="modal-overlay" id="eventModal">
+      <div class="modal-container">
+        <header class="modal-header">
+          <h2>Add Campus Event</h2>
+          <button class="modal-close" type="button" aria-label="Close modal">×</button>
+        </header>
+        <main class="modal-body">
+          <form id="eventForm">
+            <label>
+              Event Category
+              <select id="modalEventCategory" required>
+                <option value="Academic">Academic</option>
+                <option value="Career">Career</option>
+                <option value="Campus Life">Campus Life</option>
+              </select>
+            </label>
+            <label>
+              Event Title
+              <input type="text" id="modalEventTitle" placeholder="e.g. Resume Verification Deadline" required />
+            </label>
+            <label>
+              Description / Notes
+              <textarea id="modalEventDesc" rows="3" placeholder="Add some details..." required style="width: 100%; border-radius: 8px; background: rgba(8, 9, 8, 0.72); border: 1px solid rgba(244, 240, 232, 0.13); color: var(--ink); padding: 10px; font-family: inherit; resize: vertical;"></textarea>
+            </label>
+            <label>
+              Event Flyer / Image (Optional)
+              <input type="file" id="modalEventFile" accept="image/*" class="file-input" style="padding: 8px; background: rgba(8, 9, 8, 0.72); border: 1px solid rgba(244, 240, 232, 0.13); border-radius: 8px; color: var(--body); cursor: pointer;" />
+            </label>
+          </form>
+        </main>
+        <footer class="modal-footer">
+          <button class="ghost-button secondary modal-cancel" type="button">Cancel</button>
+          <button class="primary-button" form="eventForm" type="submit">Publish Event</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="./app-v2.js"></script>
   </body>
 </html>

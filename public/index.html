@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Campus Compass</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <section class="home-screen" id="home" aria-labelledby="homeTitle">
@@ -17,47 +18,45 @@
           </span>
         </a>
 
-        <div class="auth-actions" aria-label="Dummy account actions">
-          <button class="text-button" type="button" data-auth-action="login">Log In</button>
-          <button class="text-button" type="button" data-auth-action="signin">Sign In</button>
-          <button class="primary-button compact" type="button" data-auth-action="signup">Sign Up</button>
+        <div class="auth-actions" aria-label="Student portal access">
+          <button class="primary-button compact" type="button" data-auth-action="login">Student Log In</button>
         </div>
       </header>
 
       <div class="home-layout">
         <div class="home-copy">
           <p class="eyebrow">Academic services desk</p>
-          <h1 id="homeTitle">One calm place for campus planning.</h1>
+          <h1 id="homeTitle">Simplifying your campus planning.</h1>
           <p class="intro">
             Access elective reviews, CGPA planning, placement resources, and event tracking from a university-friendly dashboard.
           </p>
 
           <div class="home-actions">
-            <button class="primary-button" type="button" data-auth-action="signup">Create Dummy Account</button>
-            <button class="ghost-button" type="button" data-auth-action="login">Student Log In</button>
-            <button class="skip-link" type="button" id="enterPortal">Skip to main page</button>
+            <button class="primary-button" type="button" data-auth-action="login">Student Log In</button>
           </div>
         </div>
 
         <aside class="auth-cover" aria-label="Dummy sign in panel">
           <div class="auth-card">
             <div>
-              <p class="eyebrow">Dummy access</p>
-              <h2 id="authTitle">Sign in to preview</h2>
-              <p id="authHint">This cover is only a placeholder. Use the bypass button to enter the main page.</p>
+              <p class="eyebrow">Secure Campus Access</p>
+              <h2 id="authTitle">IIT Madras Student Portal</h2>
+              <p id="authHint">Authorized access via Google accounts.</p>
             </div>
 
-            <form class="auth-form" aria-label="Dummy authentication form">
-              <label>
-                University email
-                <input type="email" placeholder="student@university.edu" autocomplete="email" />
-              </label>
-              <label>
-                Password
-                <input type="password" placeholder="Not required yet" autocomplete="current-password" />
-              </label>
-              <button class="primary-button full" type="button" id="dummySubmit">Continue preview</button>
-            </form>
+            <p id="authError" style="color: var(--maroon); font-size: 0.85rem; font-weight: 800; margin-top: 5px; display: none;"></p>
+
+            <div style="margin-top: 10px;">
+              <button class="primary-button full" type="button" id="googleSignInBtn" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-weight: 900; background: #ffffff; color: #1e1e1e; border: 1px solid #dadce0; width: 100%;">
+                <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                Sign in with Google
+              </button>
+            </div>
           </div>
 
           <div class="campus-notes" aria-label="Portal highlights">
@@ -68,10 +67,6 @@
             <div>
               <strong>4</strong>
               <span>Student tools</span>
-            </div>
-            <div>
-              <strong>0</strong>
-              <span>Verification steps for now</span>
             </div>
           </div>
         </aside>
@@ -138,6 +133,19 @@
               </span>
             </a>
 
+            <a class="tool-card" href="./departments.html">
+              <span class="tool-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </span>
+              <span>
+                <strong>Department Resources</strong>
+                <small>Branch-specific core materials, drive folders</small>
+              </span>
+            </a>
+
             <a class="tool-card" href="./events.html">
               <span class="tool-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" role="img">
@@ -156,6 +164,98 @@
       </main>
     </div>
 
-    <script src="./app.js"></script>
+    <script>
+      console.log("Inline auth script initialized...");
+      async function initGoogleAuthInline() {
+        try {
+          const res = await fetch("/api/config");
+          const config = await res.json();
+          
+          const supabaseLib = window.Supabase || window.supabase;
+          if (!supabaseLib) {
+            console.error("Supabase CDN not loaded.");
+            return;
+          }
+          const supabase = supabaseLib.createClient(config.supabaseUrl, config.supabaseAnonKey);
+          console.log("Inline Supabase Client initialized.");
+          
+          const homeScreen = document.querySelector("#home");
+          const portal = document.querySelector("#portal");
+          const topbar = document.querySelector(".topbar");
+
+          // Helper to inject user menu
+          function injectUserMenuInline(user, isMock = false) {
+            if (!topbar || document.querySelector("#userMenu")) return;
+
+            const userMenu = document.createElement("div");
+            userMenu.id = "userMenu";
+            userMenu.style.cssText = "display: flex; align-items: center; gap: 14px; margin-left: auto;";
+
+            const avatar = document.createElement("img");
+            avatar.src = user.user_metadata.avatar_url || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+            avatar.style.cssText = "width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line);";
+
+            const name = document.createElement("span");
+            name.textContent = user.user_metadata.full_name || "Student";
+            name.style.cssText = "font-weight: 800; font-size: 0.9rem; color: var(--body); display: inline-flex;";
+
+            const signOutBtn = document.createElement("button");
+            signOutBtn.className = "ghost-button secondary compact";
+            signOutBtn.type = "button";
+            signOutBtn.textContent = "Sign Out";
+            signOutBtn.style.cssText = "min-height: 32px; padding: 0 12px; font-size: 0.82rem; border-radius: 6px; cursor: pointer;";
+
+            signOutBtn.addEventListener("click", async () => {
+              localStorage.removeItem("mockSession");
+              if (!isMock) {
+                await supabase.auth.signOut();
+              }
+              window.location.href = "./index.html";
+            });
+
+            userMenu.append(avatar, name, signOutBtn);
+            topbar.append(userMenu);
+          }
+
+          // 1. Listen for Google OAuth Auth State Changes (Catches redirect token instantly)
+          supabase.auth.onAuthStateChange((event, session) => {
+            console.log("Inline Auth state changed:", event, !!session);
+            if (session) {
+              if (homeScreen && portal) {
+                homeScreen.classList.add("is-hidden");
+                portal.classList.remove("is-hidden");
+                injectUserMenuInline(session.user, false);
+              }
+            }
+          });
+
+          // 4. Google Sign-In trigger
+          const btn = document.querySelector("#googleSignInBtn");
+          if (btn) {
+            console.log("Inline Google Sign-In button listener registered.");
+            btn.addEventListener("click", async () => {
+              console.log("Inline googleSignInBtn clicked. Redirecting to Supabase OAuth...");
+              const { error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                  redirectTo: window.location.origin + "/index.html?view=portal",
+                }
+              });
+              if (error) {
+                console.error("Login failure:", error.message);
+                if (authError) {
+                  authError.textContent = "Sign in failed: " + error.message;
+                  authError.style.display = "block";
+                }
+              }
+            });
+          }
+        } catch (err) {
+          console.error("Inline auth flow failed:", err);
+        }
+      }
+      initGoogleAuthInline();
+    </script>
+    <script src="./app-v2.js"></script>
   </body>
 </html>
